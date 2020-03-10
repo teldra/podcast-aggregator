@@ -6,6 +6,17 @@ import requests
 import hashlib
 import sys
 from datetime import datetime
+# include standard modules
+import argparse
+
+# initiate the parser
+parser = argparse.ArgumentParser()
+# add long and short argument
+parser.add_argument("--title", "-t", help="feed title")
+parser.add_argument("--link", "-l", help="feed link")
+
+# read arguments from the command line
+args = parser.parse_args()
 
 if len (sys.argv) <= 1 :
 	print("Usage: python $URL ")
@@ -13,8 +24,9 @@ if len (sys.argv) <= 1 :
 
 print("<rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\">")
 print("<channel>")
-print("<title></title>")
-print("<link></link>")
+print("<title>%s</title>" % (args.title))
+print("<link>%s</link>" % (args.link))
+print("\n")
 
 for i in range(len(sys.argv)):
 	if i != 0:
@@ -26,7 +38,6 @@ for i in range(len(sys.argv)):
 		for ep in feed['episodes']:
 			eptitle = ep['title']
 			epdesc = ep['description']
-			epdesc2 = ep['description'].encode('utf-8')
 			eppubdate = datetime.utcfromtimestamp(int(ep['published'])).strftime('%a, %d %b %Y %T')
 			enclosure = ep['enclosures'][0]
 			epurl = enclosure['url'].split("?")[0]
