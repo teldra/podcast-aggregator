@@ -16,7 +16,7 @@ parser.add_argument("--title", "-t", help="feed title")
 parser.add_argument("--link", "-l", help="feed link")
 
 # read arguments from the command line
-args = parser.parse_args()
+args, unknown = parser.parse_known_args()
 
 if len (sys.argv) <= 1 :
 	print("Usage: python $URL ")
@@ -28,9 +28,9 @@ print("<title>%s</title>" % (args.title))
 print("<link>%s</link>" % (args.link))
 print("\n")
 
-for i in range(len(sys.argv)):
+for i in range(len(unknown)):
 	if i != 0:
-		feedurl = sys.argv[i]
+		feedurl = unknown[i]
 		feed = podcastparser.parse(feedurl, urllib.request.urlopen(feedurl), max_episodes=7)
 		feedtitle = feed.get('title', '')
 		feedlink = feed.get('link', '')
