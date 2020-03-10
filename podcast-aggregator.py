@@ -24,7 +24,7 @@ print("<channel>")
 print("<title>%s</title>" % (args.title))
 print("<link>%s</link>" % (args.link))
 print("<image>")
-print("<url>%s</url>" & (args.image))
+print("<url>%s</url>" % (args.image))
 print("</image>")
 print("\n")
 
