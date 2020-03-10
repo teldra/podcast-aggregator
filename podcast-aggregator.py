@@ -14,18 +14,20 @@ parser = argparse.ArgumentParser()
 # add long and short argument
 parser.add_argument("--title", "-t", help="feed title")
 parser.add_argument("--link", "-l", help="feed link")
+parser.add_argument("--image", "-i", help="feed link")
 
 # read arguments from the command line
 args, unknown = parser.parse_known_args()
-
-if len (sys.argv) <= 1 :
-	print("Usage: python $URL ")
-	sys.exit (1)
 
 print("<rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\">")
 print("<channel>")
 print("<title>%s</title>" % (args.title))
 print("<link>%s</link>" % (args.link))
+print("<image>")
+print("<url>%s</url>" & (args.image))
+print("</image>")
+
+
 print("\n")
 
 for i in range(len(unknown)):
