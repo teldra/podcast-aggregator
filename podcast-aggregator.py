@@ -14,7 +14,7 @@ parser = argparse.ArgumentParser()
 # add long and short argument
 parser.add_argument("--title", "-t", help="feed title")
 parser.add_argument("--link", "-l", help="feed link")
-parser.add_argument("--image", "-i", help="feed link")
+parser.add_argument("--image", "-i", help="feed image")
 
 # read arguments from the command line
 args, unknown = parser.parse_known_args()
@@ -26,8 +26,6 @@ print("<link>%s</link>" % (args.link))
 print("<image>")
 print("<url>%s</url>" & (args.image))
 print("</image>")
-
-
 print("\n")
 
 for i in range(len(unknown)):
