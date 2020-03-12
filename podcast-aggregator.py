@@ -29,7 +29,6 @@ print("</image>")
 print("\n")
 
 for i in range(len(unknown)):
-	if i != 0:
 		feedurl = unknown[i]
 		feed = podcastparser.parse(feedurl, urllib.request.urlopen(feedurl), max_episodes=7)
 		feedtitle = feed.get('title', '')
