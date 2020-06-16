@@ -40,11 +40,12 @@ for i in range(len(unknown)):
 			eppubdate = datetime.utcfromtimestamp(int(ep['published'])).strftime('%a, %d %b %Y %T')
 			enclosure = ep['enclosures'][0]
 			epurl = enclosure['url'].split("?")[0]
+			guid = hashlib.md5(epurl.encode() + eppubdate.encode())
 
 			print("<item>")
 			print("<title>%s: %s</title>" % (feedtitle.replace('&', '&amp;'),eptitle.replace('&', '&amp;')))
 			print("<description><![CDATA[%s\n\n%s\n\n<a href=\"%s\">%s</a>\n\n<a href=\"%s\">%s</a>\n]]></description>" % (epdesc, feeddesc, epurl, epurl, feedlink, feedlink))
-			print("<guid>%s</guid>" % (epurl))
+			print("<guid>%s</guid>" % (guid.hexdigest()))
 			print("<pubDate>%s UTC</pubDate>" % (eppubdate))
 			print("<enclosure url=\"%s\"/>" % (epurl))
 			print("</item>")
